@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "./components/Navigation";
+import Navigation from "./Components/Navigation";
 import Hero from "./Components/Hero";
 import About from './Components/About';
 import Skills from "./Components/Skills";
