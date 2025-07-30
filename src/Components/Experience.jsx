@@ -2,7 +2,7 @@ import React from "react";
 import { Calendar, MapPin, Building2 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function Experience() {
+const Experience=()=> {
   const titleRef = useScrollReveal();
   const cardRef = useScrollReveal();
 
@@ -122,3 +122,5 @@ export default function Experience() {
     </section>
   );
 }
+
+export default Experience

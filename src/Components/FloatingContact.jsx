@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 
-export default function FloatingContact() {
+const FloatingContact=()=> {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show floating button after scrolling past hero section
       setIsVisible(window.scrollY > 100);
     };
 
@@ -90,3 +89,4 @@ export default function FloatingContact() {
     </div>
   );
 }
+export default FloatingContact

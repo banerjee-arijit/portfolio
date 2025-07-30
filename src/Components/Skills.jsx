@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function Skills() {
+const Skills=()=> {
   const titleRef = useScrollReveal();
   const skillsRef = useScrollReveal();
   const toolsRef = useScrollReveal();
@@ -209,3 +209,4 @@ export default function Skills() {
     </section>
   );
 }
+export default Skills

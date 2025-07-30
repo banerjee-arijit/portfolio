@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
-export default function Projects() {
+const Projects=()=> {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const titleRef = useScrollReveal();
   const filtersRef = useScrollReveal();
@@ -270,3 +270,4 @@ export default function Projects() {
     </section>
   );
 }
+export default Projects

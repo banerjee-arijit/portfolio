@@ -1,32 +1,29 @@
-import { useEffect, useRef } from 'react';
+// src/hooks/useScrollReveal.js
+import { useEffect, useRef } from "react";
 
-export const useScrollReveal = (threshold = 0.1) => {
+export const useScrollReveal = () => {
   const ref = useRef(null);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    element.classList.add("opacity-0", "translate-y-8", "transition-all", "duration-700");
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          element.classList.add("opacity-100", "translate-y-0");
+          observer.unobserve(element);
         }
       },
-      {
-        threshold,
-        rootMargin: '0px 0px -50px 0px'
-      }
+      { threshold: 0.1 }
     );
 
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    observer.observe(element);
 
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [threshold]);
+    return () => observer.disconnect();
+  }, []);
 
   return ref;
 };
