@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 
-export default function Navigation({ darkMode, toggleDarkMode }) {
+const Navigation=({ darkMode, toggleDarkMode })=> {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -99,3 +99,4 @@ export default function Navigation({ darkMode, toggleDarkMode }) {
     </nav>
   );
 }
+export default Navigation

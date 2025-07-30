@@ -3,7 +3,7 @@ import { Download, Code, Heart, Coffee } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import image from "../assets/image.png";
 
-export default function About() {
+const About=()=> {
   const titleRef = useScrollReveal();
   const imageRef = useScrollReveal();
   const contentRef = useScrollReveal();
@@ -116,3 +116,5 @@ export default function About() {
     </section>
   );
 }
+
+export default About
