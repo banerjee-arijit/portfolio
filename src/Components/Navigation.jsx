@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import ThemeToggleButton from "./ui/theme-toggle-button";
 
-const Navigation=({ darkMode, toggleDarkMode })=> {
+const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -44,6 +45,7 @@ const Navigation=({ darkMode, toggleDarkMode })=> {
             Arijit
           </div>
 
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
@@ -54,23 +56,12 @@ const Navigation=({ darkMode, toggleDarkMode })=> {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 transform hover:scale-110"
-              title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            <ThemeToggleButton />
           </div>
 
+          {/* Mobile Nav Toggle */}
           <div className="md:hidden flex items-center space-x-4">
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 transform hover:scale-110"
-              title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            <ThemeToggleButton />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 dark:text-gray-300"
@@ -81,6 +72,7 @@ const Navigation=({ darkMode, toggleDarkMode })=> {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700">
           <div className="px-4 py-4 space-y-4">
@@ -98,5 +90,6 @@ const Navigation=({ darkMode, toggleDarkMode })=> {
       )}
     </nav>
   );
-}
-export default Navigation
+};
+
+export default Navigation;

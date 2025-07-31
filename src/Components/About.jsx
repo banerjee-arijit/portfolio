@@ -1,16 +1,15 @@
 import React from "react";
 import { Download, Code, Heart, Coffee } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-import image from "../assets/profile_photo.png";
-
-const About=()=> {
+import { Button } from "./ui/button";
+const About = () => {
   const titleRef = useScrollReveal();
   const imageRef = useScrollReveal();
   const contentRef = useScrollReveal();
   const factsRef = useScrollReveal();
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+    <section id="about" className="py-20 bg-white dark:bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-16 scroll-reveal">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -21,13 +20,14 @@ const About=()=> {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div ref={imageRef} className="relative scroll-reveal-left">
-            <div className="relative mx-auto lg:mx-0 w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={image}
-                alt="Arijit - Frontend Developer"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+            <div className="relative mx-auto lg:mx-0 w-80 h-80 rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-gray-800 flex items-center justify-center">
+              <div className="absolute text-[160px] font-extrabold text-gray-200 dark:text-gray-700 select-none -z-10 blur-sm pointer-events-none">
+                ABOUT
+              </div>
+
+              <div className="text-[100px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500 drop-shadow-md">
+                AB
+              </div>
             </div>
           </div>
 
@@ -99,22 +99,23 @@ const About=()=> {
               </div>
             </div>
 
-            {/* Resume Button */}
-            <div className="pt-6">
+            <Button
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-6 mt-8 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            >
               <a
                 href="https://drive.google.com/uc?export=download&id=1IlqizrggJy8JikoJQb1Va_yJQ3bYuVMS"
                 download
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               >
-                <Download size={20} />
+                <Download size={20} className="mr-2" />
                 Download Resume
               </a>
-            </div>
+            </Button>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
-export default About
+export default About;
