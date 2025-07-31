@@ -1,7 +1,7 @@
 import React from "react";
 import { Download, Code, Heart, Coffee } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-import image from "../assets/image.png";
+import image from "../assets/profile_photo.png";
 
 const About=()=> {
   const titleRef = useScrollReveal();
@@ -23,7 +23,7 @@ const About=()=> {
           <div ref={imageRef} className="relative scroll-reveal-left">
             <div className="relative mx-auto lg:mx-0 w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src={image}
                 alt="Arijit - Frontend Developer"
                 className="w-full h-full object-cover"
               />
