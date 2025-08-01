@@ -8,8 +8,8 @@ import {
   Users,
   Calendar,
 } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
-import { Button } from "../components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
+import { Button } from "./ui/button";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const Projects = () => {
@@ -63,7 +63,12 @@ const Projects = () => {
         "OTP login",
         "Live vehicle tracking",
       ],
-      icon: <ShoppingCart className="text-green-600 dark:text-green-400" size={24} />,
+      icon: (
+        <ShoppingCart
+          className="text-green-600 dark:text-green-400"
+          size={24}
+        />
+      ),
     },
     {
       id: 3,
@@ -82,7 +87,9 @@ const Projects = () => {
         "Ambulance booking",
         "Consult doctors",
       ],
-      icon: <Calendar className="text-purple-600 dark:text-purple-400" size={24} />,
+      icon: (
+        <Calendar className="text-purple-600 dark:text-purple-400" size={24} />
+      ),
     },
     {
       id: 4,
@@ -95,12 +102,10 @@ const Projects = () => {
       category: "Full-Stack",
       github: "http://github.com/banerjee-arijit/ChatRoomHub",
       demo: "https://my-project-nu-murex.vercel.app/",
-      features: [
-        "Secure Clerk auth",
-        "Real-time chat",
-        "Responsive UI",
-      ],
-      icon: <Users className="text-yellow-600 dark:text-yellow-400" size={24} />,
+      features: ["Secure Clerk auth", "Real-time chat", "Responsive UI"],
+      icon: (
+        <Users className="text-yellow-600 dark:text-yellow-400" size={24} />
+      ),
     },
     {
       id: 5,
@@ -132,7 +137,10 @@ const Projects = () => {
         </div>
 
         <Tabs defaultValue="All" className="w-full">
-          <div ref={filtersRef} className="flex justify-center mb-12 scroll-reveal">
+          <div
+            ref={filtersRef}
+            className="flex justify-center mb-12 scroll-reveal"
+          >
             <TabsList className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-2 flex gap-2">
               {filters.map((filter) => (
                 <TabsTrigger
@@ -148,7 +156,9 @@ const Projects = () => {
 
           {filters.map((filter) => {
             const filtered =
-              filter === "All" ? projects : projects.filter((p) => p.category === filter);
+              filter === "All"
+                ? projects
+                : projects.filter((p) => p.category === filter);
 
             return (
               <TabsContent key={filter} value={filter}>
@@ -218,13 +228,26 @@ const Projects = () => {
 
                         <div className="flex gap-3">
                           <Button asChild variant="outline" className="flex-1">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center">
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 justify-center"
+                            >
                               <Github size={16} />
                               Code
                             </a>
                           </Button>
-                          <Button asChild className="bg-gradient-to-r from-blue-600 to-teal-600 text-white flex-1 hover:shadow-lg transition-all duration-200">
-                            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 justify-center">
+                          <Button
+                            asChild
+                            className="bg-gradient-to-r from-blue-600 to-teal-600 text-white flex-1 hover:shadow-lg transition-all duration-200"
+                          >
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 justify-center"
+                            >
                               <ExternalLink size={16} />
                               Demo
                             </a>
@@ -243,7 +266,10 @@ const Projects = () => {
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             Want to see more of my work?
           </p>
-          <Button asChild className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+          <Button
+            asChild
+            className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+          >
             <a
               href="https://github.com/banerjee-arijit"
               target="_blank"

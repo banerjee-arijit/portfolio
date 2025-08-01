@@ -1,12 +1,12 @@
 import React from "react";
-import Navigation from "./Components/Navigation";
-import Hero from "./Components/Hero";
-import About from './Components/About';
-import Skills from "./Components/Skills";
-import Experience from "./Components/Experience";
-import Projects from "./Components/Projects";
-import Contact from "./Components/Contact";
-import FloatingContact from "./Components/FloatingContact";
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import FloatingContact from "./components/FloatingContact";
 
 function App() {
   return (
