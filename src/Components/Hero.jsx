@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowRight, Download } from "lucide-react";
-import { Button } from "../Components/ui/button";
-
+import { Button } from "./ui/button";
 const Hero = () => {
   const scrollToContact = () => {
     const element = document.getElementById("contact");
