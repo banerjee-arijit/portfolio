@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrowRight, Download } from "lucide-react";
-import { Button } from "./ui/button";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -33,7 +32,7 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-          <Button
+          <button
             onClick={scrollToContact}
             className="px-8 py-6 lg:px-6 lg:py-5 text-white bg-gradient-to-r from-blue-600 to-teal-600 hover:shadow-xl transform hover:scale-105 transition-all duration-200"
           >
@@ -42,19 +41,19 @@ const Hero = () => {
               size={20}
               className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
             />
-          </Button>
+          </button>
 
           <a
             href="https://drive.google.com/uc?export=download&id=1IlqizrggJy8JikoJQb1Va_yJQ3bYuVMS"
             download
           >
-            <Button
+            <button
               variant="outline"
               className="px-8 py-4 lg:px-6 lg:py-5 border-gray-300 dark:border-gray-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
             >
               <Download size={20} className="mr-2" />
               Download Resume
-            </Button>
+            </button>
           </a>
         </div>
       </div>
