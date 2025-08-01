@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, Download } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../Components/ui/button";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -11,12 +11,10 @@ const Hero = () => {
   };
 
   return (
-   <section
-  id="home"
-  className="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden"
->
-      
-
+    <section
+      id="home"
+      className="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden"
+    >
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
         <h1 className="text-5xl lg:text-6xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
           Hi, I'm{" "}
