@@ -67,18 +67,20 @@ export default function Projects({ limit }: { limit?: number }) {
               transition={{ type: "spring", stiffness: 220, damping: 22 }}
               className="relative w-[96vw] h-[92vh] flex flex-col bg-white dark:bg-neutral-950 rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-2xl z-10"
             >
-              {/* Premium Mock Browser Header */}
+              {/* Premium Custom Showcase Header */}
               <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-150 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-900 select-none">
-                {/* Mock Window Controls (Mac Style) */}
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3.5 h-3.5 rounded-full bg-red-400 dark:bg-red-500/70" />
-                  <span className="w-3.5 h-3.5 rounded-full bg-yellow-400 dark:bg-yellow-500/70" />
-                  <span className="w-3.5 h-3.5 rounded-full bg-green-400 dark:bg-green-500/70" />
+                {/* Custom Tech Sandbox Status Pin */}
+                <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 rounded-full select-none">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider font-mono">Live Sandbox</span>
                 </div>
 
                 {/* Mock Browser URL Bar */}
-                <div className="hidden sm:flex items-center gap-2 px-4 py-1.5 bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200/50 dark:border-neutral-700/50 rounded-full max-w-md w-72 md:w-96 text-[11px] text-neutral-500 dark:text-neutral-400 font-mono tracking-tight justify-center">
-                  <span className="text-neutral-400 dark:text-neutral-600">https://</span>
+                <div className="hidden sm:flex items-center gap-2 px-4.5 py-1.5 bg-neutral-100 dark:bg-neutral-850/80 border border-neutral-200/40 dark:border-neutral-700/40 rounded-full max-w-md w-72 md:w-96 text-[11px] text-neutral-500 dark:text-neutral-400 font-mono tracking-tight justify-center shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)]">
+                  <span className="text-neutral-400 dark:text-neutral-600 font-sans text-xs">🔗</span>
                   <span className="truncate">{project.href.replace(/^https?:\/\//, "")}</span>
                 </div>
 
@@ -88,7 +90,7 @@ export default function Projects({ limit }: { limit?: number }) {
                     href={project.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-extrabold bg-blue-500 hover:bg-blue-600 text-white px-3.5 py-1.5 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold bg-white hover:bg-neutral-50 dark:bg-neutral-950 dark:hover:bg-neutral-900 text-neutral-700 dark:text-neutral-300 px-3.5 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
                     <span>Open Live</span>
                     <IconExternalLink size={12} />
