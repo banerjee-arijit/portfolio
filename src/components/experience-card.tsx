@@ -1,9 +1,8 @@
-import { lazy, Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { Experience } from "../types/experience";
 import { motion } from "framer-motion";
 import { IconMapPinFilled } from "@tabler/icons-react";
-
-const StackIcon = lazy(() => import("tech-stack-icons"));
+import StackIcon from "./stack-icon";
 
 export default function ExperienceCard({ experience }: { experience: Experience }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -50,13 +49,11 @@ export default function ExperienceCard({ experience }: { experience: Experience 
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="flex items-center justify-start rounded-full border border-neutral-200 bg-neutral-100 p-1 px-2.5 text-xs text-neutral-600 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 hover:z-10 cursor-pointer shadow-sm"
             >
-              <Suspense fallback={<div className="h-4 w-4 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse shrink-0" />}>
                 <StackIcon 
                   name={tech.iconName as any} 
                   variant={isDarkMode ? "dark" : "light"} 
                   className="h-4 w-4 shrink-0" 
                 />
-              </Suspense>
               <span className="ml-1.5 text-neutral-600 dark:text-neutral-300 font-medium">
                 {tech.name}
               </span>

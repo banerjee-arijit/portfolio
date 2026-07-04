@@ -1,8 +1,6 @@
-import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import avatarImg from "../assets/avatar.webp";
-
-const StackIcon = lazy(() => import("tech-stack-icons"));
+import StackIcon from "./stack-icon";
 
 // Helper to generate circular keyframes with start angles
 function getCircleKeyframes(
@@ -69,13 +67,7 @@ export default function ProfileCard() {
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-1 bg-white/85 dark:bg-neutral-900/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-sm text-[10px] font-bold text-neutral-800 dark:text-neutral-200"
         >
-          <Suspense
-            fallback={
-              <div className="w-3 h-3 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />
-            }
-          >
             <StackIcon name="java" className="w-3 h-3" />
-          </Suspense>
           <span>Java</span>
         </motion.div>
 
@@ -92,13 +84,7 @@ export default function ProfileCard() {
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-1 bg-white/85 dark:bg-neutral-900/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-sm text-[10px] font-bold text-neutral-800 dark:text-neutral-200"
         >
-          <Suspense
-            fallback={
-              <div className="w-3 h-3 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />
-            }
-          >
             <StackIcon name="spring" className="w-3 h-3" />
-          </Suspense>
           <span>Spring</span>
         </motion.div>
 
@@ -115,13 +101,7 @@ export default function ProfileCard() {
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-1 bg-white/85 dark:bg-neutral-900/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-sm text-[10px] font-bold text-neutral-800 dark:text-neutral-200"
         >
-          <Suspense
-            fallback={
-              <div className="w-3 h-3 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />
-            }
-          >
             <StackIcon name="react" className="w-3 h-3" />
-          </Suspense>
           <span>React</span>
         </motion.div>
 
@@ -138,13 +118,7 @@ export default function ProfileCard() {
           }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center gap-1 bg-white/85 dark:bg-neutral-900/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-neutral-200 dark:border-neutral-800 shadow-sm text-[10px] font-bold text-neutral-800 dark:text-neutral-200"
         >
-          <Suspense
-            fallback={
-              <div className="w-3 h-3 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />
-            }
-          >
             <StackIcon name="nodejs" className="w-3 h-3" />
-          </Suspense>
           <span>Node</span>
         </motion.div>
       </div>
