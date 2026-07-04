@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   IconTerminal,
@@ -7,7 +7,8 @@ import {
   IconBrandGithub,
 } from "@tabler/icons-react";
 import SectionHeading from "./section-heading";
-import StackIcon from "./stack-icon";
+
+const StackIcon = lazy(() => import("tech-stack-icons"));
 
 const getIconName = (tech: string): string | null => {
   const mapping: Record<string, string> = {
@@ -200,11 +201,13 @@ export default function MoreProjectsExplorer() {
                         className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono bg-white dark:bg-neutral-950 text-neutral-700 dark:text-neutral-300 rounded-full border border-neutral-200 dark:border-neutral-800/80 shadow-sm"
                       >
                         {iconName && (
+                          <Suspense fallback={<div className="w-3.5 h-3.5 rounded bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />}>
                             <StackIcon 
                               name={iconName as any} 
                               variant={isDarkMode ? "dark" : "light"} 
                               className="w-3.5 h-3.5" 
                             />
+                          </Suspense>
                         )}
                         <span>{tech}</span>
                       </span>

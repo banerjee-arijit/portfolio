@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import SectionHeading from "./section-heading";
-import StackIcon from "./stack-icon";
+
+const StackIcon = lazy(() => import("tech-stack-icons"));
 
 interface Skill {
   name: string;
@@ -71,11 +72,17 @@ export default function Skills() {
             >
               {/* Premium Icon Card wrapper */}
               <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800/80 shadow-sm dark:shadow-[0_0_12px_rgba(0,0,0,0.4)] group-hover:scale-105 group-hover:border-blue-500/30 dark:group-hover:border-blue-400/30 group-hover:shadow-md transition-all duration-300 mb-4">
+                <Suspense
+                  fallback={
+                    <div className="w-8 h-8 rounded-lg bg-neutral-200/50 dark:bg-neutral-800/50 animate-pulse" />
+                  }
+                >
                   <StackIcon
                     name={skill.iconName}
                     variant={isDarkMode ? "dark" : "light"}
                     className="w-8 h-8"
                   />
+                </Suspense>
               </div>
               <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200 text-center tracking-wide">
                 {skill.name}
