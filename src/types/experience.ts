@@ -1,0 +1,12 @@
+export interface Experience {
+  title: string;
+  company: string;
+  location?: string;
+  date: string;
+  description: string;
+  companyLogo: string;
+  techStack: {
+    name: string;
+    iconName: string;
+  }[];
+}
