@@ -109,7 +109,7 @@ export default function App() {
                       requestAnimationFrame(animateScroll);
                     }
                   }}
-                  className="inline-block hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transition-all rounded-[10px] cursor-pointer"
+                  className="inline-block hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transition-all rounded-full cursor-pointer"
                 >
                   <InteractiveHoverButton>My Work</InteractiveHoverButton>
                 </div>
@@ -142,7 +142,7 @@ export default function App() {
                       requestAnimationFrame(animateScroll);
                     }
                   }}
-                  className="border border-neutral-300 hover:bg-neutral-200 dark:border-neutral-700 dark:hover:bg-neutral-900 px-6 py-2.5 rounded-[10px] text-sm font-semibold transition cursor-pointer"
+                  className="border border-neutral-300 hover:bg-neutral-200 dark:border-neutral-700 dark:hover:bg-neutral-900 px-6 py-2.5 rounded-full text-sm font-semibold transition cursor-pointer"
                 >
                   Contact Me
                 </a>
