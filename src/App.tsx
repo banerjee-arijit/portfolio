@@ -28,7 +28,6 @@ export default function App() {
     return "dark";
   });
 
-
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
     if (!("startViewTransition" in document)) {
@@ -53,23 +52,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen text-neutral-900 dark:text-neutral-50 font-sans">
-      {/* Global Aurora Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-20 select-none">
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 select-none bg-neutral-100 dark:bg-black">
         <div className="animate-aurora-bg w-full h-full" />
       </div>
-
-      {/* Fixed Noise Texture Overlay */}
-      <div className="fixed inset-0 pointer-events-none -z-15 bg-noise opacity-[0.015] dark:opacity-[0.025] bg-repeat" />
-
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       <main className="max-w-5xl mx-auto pt-10 pb-4 overflow-x-hidden">
         <Container className="relative pb-4">
           <Scales />
 
-          {/* Hero Landing Profile (Full Screen Fold) */}
           <div className="relative grid grid-cols-1 md:grid-cols-[1.5fr_1fr] items-center gap-4 min-h-[85vh] md:min-h-[80vh] py-12 overflow-visible">
-            {/* Hero Background Spotlight Pattern */}
             <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] select-none">
               <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.5px,transparent_1.5px)] dark:bg-[radial-gradient(#334155_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-35 dark:opacity-25" />
             </div>
@@ -88,23 +80,30 @@ export default function App() {
                     e.preventDefault();
                     const target = document.getElementById("projects");
                     if (target) {
-                      const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                      const targetPosition =
+                        target.getBoundingClientRect().top + window.scrollY;
                       const startPosition = window.scrollY;
                       const distance = targetPosition - startPosition;
                       const duration = 800;
                       let startTime: number | null = null;
-                      const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                      const easeInOutCubic = (t: number) =>
+                        t < 0.5
+                          ? 4 * t * t * t
+                          : 1 - Math.pow(-2 * t + 2, 3) / 2;
                       const animateScroll = (currentTime: number) => {
                         if (startTime === null) startTime = currentTime;
                         const timeElapsed = currentTime - startTime;
-                        const run = easeInOutCubic(Math.min(timeElapsed / duration, 1));
+                        const run = easeInOutCubic(
+                          Math.min(timeElapsed / duration, 1),
+                        );
                         window.scrollTo(0, startPosition + distance * run);
-                        if (timeElapsed < duration) requestAnimationFrame(animateScroll);
+                        if (timeElapsed < duration)
+                          requestAnimationFrame(animateScroll);
                       };
                       requestAnimationFrame(animateScroll);
                     }
                   }}
-                  className="inline-block hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transition-all rounded-full cursor-pointer"
+                  className="inline-block hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transition-all rounded-[10px] cursor-pointer"
                 >
                   <InteractiveHoverButton>My Work</InteractiveHoverButton>
                 </div>
@@ -114,23 +113,30 @@ export default function App() {
                     e.preventDefault();
                     const target = document.getElementById("contact");
                     if (target) {
-                      const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                      const targetPosition =
+                        target.getBoundingClientRect().top + window.scrollY;
                       const startPosition = window.scrollY;
                       const distance = targetPosition - startPosition;
                       const duration = 800;
                       let startTime: number | null = null;
-                      const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                      const easeInOutCubic = (t: number) =>
+                        t < 0.5
+                          ? 4 * t * t * t
+                          : 1 - Math.pow(-2 * t + 2, 3) / 2;
                       const animateScroll = (currentTime: number) => {
                         if (startTime === null) startTime = currentTime;
                         const timeElapsed = currentTime - startTime;
-                        const run = easeInOutCubic(Math.min(timeElapsed / duration, 1));
+                        const run = easeInOutCubic(
+                          Math.min(timeElapsed / duration, 1),
+                        );
                         window.scrollTo(0, startPosition + distance * run);
-                        if (timeElapsed < duration) requestAnimationFrame(animateScroll);
+                        if (timeElapsed < duration)
+                          requestAnimationFrame(animateScroll);
                       };
                       requestAnimationFrame(animateScroll);
                     }
                   }}
-                  className="border border-neutral-300 hover:bg-neutral-200 dark:border-neutral-700 dark:hover:bg-neutral-900 px-6 py-2.5 rounded-full text-sm font-semibold transition cursor-pointer"
+                  className="border border-neutral-300 hover:bg-neutral-200 dark:border-neutral-700 dark:hover:bg-neutral-900 px-6 py-2.5 rounded-[10px] text-sm font-semibold transition cursor-pointer"
                 >
                   Contact Me
                 </a>
