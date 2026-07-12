@@ -17,8 +17,12 @@
   color: red;
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
+  background-color: #f5f5f5;
+}
+.dark body {
+  background-color: #000000;
 }
 
 :root {
@@ -121,6 +125,66 @@ a {
 .bg-noise {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIvPjwvc3ZnPg==');
   background-repeat: repeat;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+.animate-aurora-bg {
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+  --indigo-300: #c7d2fe;
+  --violet-200: #ddd6fe;
+
+  --white-gradient: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0px, transparent 50%),
+                    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0px, transparent 50%),
+                    radial-gradient(at 0% 100%, hsla(339, 49%, 30%, 1) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, hsla(256, 40%, 24%, 1) 0px, transparent 50%);
+
+  --dark-gradient: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0px, transparent 50%),
+                   radial-gradient(at 50% 0%, hsla(225, 39%, 25%, 1) 0px, transparent 50%),
+                   radial-gradient(at 100% 0%, hsla(339, 49%, 20%, 1) 0px, transparent 50%),
+                   radial-gradient(at 0% 100%, hsla(339, 49%, 20%, 1) 0px, transparent 50%),
+                   radial-gradient(at 100% 100%, hsla(256, 40%, 15%, 1) 0px, transparent 50%);
+
+  --aurora: repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
+
+  background-image: var(--white-gradient), var(--aurora);
+  background-size: 300% 200%;
+  background-position: 50% 50%, 50% 50%;
+  filter: blur(10px) invert(1);
+  position: absolute;
+  inset: -10px;
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.dark .animate-aurora-bg {
+  background-image: var(--dark-gradient), var(--aurora);
+  filter: blur(10px) invert(0);
+  opacity: 0.45;
+}
+
+.animate-aurora-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--white-gradient), var(--aurora);
+  background-size: 200% 100%;
+  animation: aurora 60s linear infinite;
+  mix-blend-mode: difference;
+}
+
+.dark .animate-aurora-bg::after {
+  background-image: var(--dark-gradient), var(--aurora);
 }
 
 

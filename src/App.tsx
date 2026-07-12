@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import Navbar from "./components/navbar";
 import Container from "./components/container";
@@ -27,16 +27,7 @@ export default function App() {
     }
     return "dark";
   });
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -61,12 +52,10 @@ export default function App() {
   }, [theme]);
 
   return (
-    <div className="min-h-screen bg-neutral-100 dark:bg-black text-neutral-900 dark:text-neutral-50 font-sans">
-      {/* Background Glowing Ambient Orbs */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-400/5 dark:bg-blue-900/5 blur-[120px] animate-float-slow" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neutral-400/5 dark:bg-neutral-900/5 blur-[120px] animate-float-reverse" />
-        <div className="absolute top-[40%] right-[10%] w-[35vw] h-[35vw] rounded-full bg-blue-300/3 dark:bg-neutral-900/5 blur-[100px] animate-float-slow" />
+    <div className="min-h-screen text-neutral-900 dark:text-neutral-50 font-sans">
+      {/* Global Aurora Background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-20 select-none">
+        <div className="animate-aurora-bg w-full h-full" />
       </div>
 
       {/* Fixed Noise Texture Overlay */}
@@ -79,30 +68,10 @@ export default function App() {
           <Scales />
 
           {/* Hero Landing Profile (Full Screen Fold) */}
-          <div 
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative grid grid-cols-1 md:grid-cols-[1.5fr_1fr] items-center gap-4 min-h-[85vh] md:min-h-[80vh] py-12 overflow-visible group"
-          >
-            {/* Interactive Grid & Spotlight Glow */}
-            <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl border border-neutral-200/50 dark:border-neutral-800/50 select-none shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] bg-neutral-50/20 dark:bg-neutral-900/5 backdrop-blur-[2px] transition-colors duration-300 group-hover:border-neutral-300/60 dark:group-hover:border-neutral-700/60">
-              {/* Glowing Cursor Spotlight */}
-              <div 
-                className="absolute inset-0 transition-opacity duration-500"
-                style={{
-                  opacity: isHovered ? 1 : 0.4,
-                  background: isHovered
-                    ? (theme === "dark"
-                        ? `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%)`
-                        : `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.1) 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%)`)
-                    : (theme === "dark"
-                        ? `radial-gradient(450px circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 100%)`
-                        : `radial-gradient(450px circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, rgba(59, 130, 246, 0.01) 50%, transparent 100%)`)
-                }}
-              />
-              {/* Fine Grid Pattern */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(51,65,85,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(51,65,85,0.12)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_80%,transparent_100%)] opacity-85" />
+          <div className="relative grid grid-cols-1 md:grid-cols-[1.5fr_1fr] items-center gap-4 min-h-[85vh] md:min-h-[80vh] py-12 overflow-visible">
+            {/* Hero Background Spotlight Pattern */}
+            <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] select-none">
+              <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.5px,transparent_1.5px)] dark:bg-[radial-gradient(#334155_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-35 dark:opacity-25" />
             </div>
             <div className="py-6 px-4 md:px-0">
               <HelloTypewriter />
