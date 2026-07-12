@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
+import { motion } from "framer-motion";
 import Navbar from "./components/navbar";
 import Container from "./components/container";
 import Scales from "./components/scales";
@@ -27,6 +28,30 @@ export default function App() {
     }
     return "dark";
   });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -71,16 +96,27 @@ export default function App() {
             <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] select-none">
               <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1.5px,transparent_1.5px)] dark:bg-[radial-gradient(#334155_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-35 dark:opacity-25" />
             </div>
-            <div className="py-6 px-4 md:px-0">
-              <HelloTypewriter />
-              <Heading>Arijit Banerjee</Heading>
-              <Subheading>
-                I am a results-driven Software Engineer with experience building
-                scalable full-stack applications using Java, Spring Boot,
-                React.js, and Node.js. I recently completed my internship as a
-                Java Full Stack Developer at ShopCardd.
-              </Subheading>
-              <div className="flex gap-4 mt-6 items-center">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="py-6 px-4 md:px-0"
+            >
+              <motion.div variants={itemVariants}>
+                <HelloTypewriter />
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Heading>Arijit Banerjee</Heading>
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Subheading>
+                  I am a results-driven Software Engineer with experience building
+                  scalable full-stack applications using Java, Spring Boot,
+                  React.js, and Node.js. I recently completed my internship as a
+                  Java Full Stack Developer at ShopCardd.
+                </Subheading>
+              </motion.div>
+              <motion.div variants={itemVariants} className="flex gap-4 mt-6 items-center">
                 <div
                   onClick={(e) => {
                     e.preventDefault();
@@ -146,10 +182,21 @@ export default function App() {
                 >
                   Contact Me
                 </a>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <ProfileCard />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 80,
+                damping: 15,
+                delay: 0.35,
+              }}
+            >
+              <ProfileCard />
+            </motion.div>
           </div>
 
           {/* Section: Projects */}
