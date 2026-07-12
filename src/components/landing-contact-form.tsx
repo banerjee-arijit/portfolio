@@ -32,13 +32,15 @@ export default function LandingContactForm() {
       name: "X (Twitter)",
       icon: IconBrandX,
       href: "https://x.com/ArijitBane24217",
-      hoverClass: "hover:text-neutral-900 dark:hover:text-white hover:scale-110",
+      hoverClass:
+        "hover:text-neutral-900 dark:hover:text-white hover:scale-110",
     },
     {
       name: "GitHub",
       icon: IconBrandGithub,
       href: "https://github.com/banerjee-arijit",
-      hoverClass: "hover:text-neutral-900 dark:hover:text-white hover:scale-110",
+      hoverClass:
+        "hover:text-neutral-900 dark:hover:text-white hover:scale-110",
     },
   ];
 
@@ -49,15 +51,22 @@ export default function LandingContactForm() {
     >
       <SectionHeading>let's connect</SectionHeading>
       <Subheading className="md:pl-0">
-        I am actively seeking full-time Software Engineering roles where I can build scalable systems, optimize performance, and collaborate with great teams. If you are hiring, want to discuss opportunities, or just want to connect—reach out!
+        I am actively seeking full-time Software Engineering roles where I can
+        build scalable systems, optimize performance, and collaborate with great
+        teams. If you are hiring, want to discuss opportunities, or just want to
+        connect—reach out!
       </Subheading>
-      
+
       <div className="flex items-center gap-6 mt-6 select-none">
         {socialLinks.map((link) => (
           <a
             key={link.name}
             href={link.href}
-            target={link.name !== "Email" && link.name !== "Phone" ? "_blank" : undefined}
+            target={
+              link.name !== "Email" && link.name !== "Phone"
+                ? "_blank"
+                : undefined
+            }
             rel="noreferrer"
             title={link.name}
             className={`text-neutral-400 dark:text-neutral-500 transition-all duration-300 ${link.hoverClass}`}
