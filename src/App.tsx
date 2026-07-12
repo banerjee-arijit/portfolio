@@ -52,8 +52,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen text-neutral-900 dark:text-neutral-50 font-sans">
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 select-none bg-neutral-100 dark:bg-black">
-        <div className="animate-aurora-bg w-full h-full" />
+      {/* Background Tech Grid & Ambient Glow Orbs */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10 select-none bg-neutral-50 dark:bg-[#030303]">
+        {/* Soft Ambient Glows */}
+        <div className="absolute top-[-10%] left-[-15%] w-[60vw] h-[60vw] rounded-full bg-indigo-500/5 dark:bg-indigo-500/10 blur-[130px] animate-float-slow" />
+        <div className="absolute bottom-[-10%] right-[-15%] w-[60vw] h-[60vw] rounded-full bg-violet-500/5 dark:bg-violet-500/10 blur-[130px] animate-float-reverse" />
+        
+        {/* Tech Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(120,119,198,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,119,198,0.04)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)] opacity-100" />
       </div>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
