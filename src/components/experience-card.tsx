@@ -70,13 +70,14 @@ export default function ExperienceCard({ experience }: { experience: Experience 
           </div>
         )}
       </div>
-      <img
-        height={80}
-        width={80}
-        src={experience.companyLogo}
-        alt={experience.company}
-        className="hidden md:block rounded-xl border border-neutral-200/50 shadow-sm"
-      />
+      <div className="hidden md:flex shrink-0 h-36 w-36 items-center justify-center rounded-2xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-950 overflow-hidden relative group transition-all hover:shadow-md hover:border-blue-500/30">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <img
+          src={experience.companyLogo}
+          alt={experience.company}
+          className="h-24 w-24 object-contain transition-transform duration-500 group-hover:scale-110 relative z-10"
+        />
+      </div>
     </div>
   );
 }
