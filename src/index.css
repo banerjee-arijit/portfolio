@@ -13,8 +13,13 @@
   display: none;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
+  background-color: #fafafa;
+}
+.dark body {
+  background-color: #030303;
 }
 
 :root {
