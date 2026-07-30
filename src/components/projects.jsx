@@ -1,135 +1,182 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { IconX, IconExternalLink } from "@tabler/icons-react";
-import SectionHeading from "./section-heading";
-import ProjectCard from "./project-card";
+import { useState } from "react";
+import {
+  IconExternalLink,
+  IconChevronUp,
+  IconChevronDown,
+} from "@tabler/icons-react";
 import { projects as allProjects } from "../constants/projects";
 
-export default function Projects({ limit }) {
-  const projects = limit ? allProjects.slice(0, limit) : allProjects;
-  const [selectedProject, setSelectedProject] = useState(null);
+export default function Projects() {
+  const [openProjects, setOpenProjects] = useState({ 0: true });
+  const [showAll, setShowAll] = useState(false);
 
-  // Lock body scroll when modal is active
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedProject]);
+  const toggleProject = (index) => {
+    setOpenProjects((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
+  const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
 
   return (
-    <div className="py-6 px-4 md:px-6 shadow-section-inset border-y border-neutral-200/10 dark:border-neutral-800/10">
-      <SectionHeading>Take a look at my best work</SectionHeading>
+    <section
+      id="projects"
+      className="border-x border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black rounded-none"
+    >
+      {/* Panel Header */}
+      <header className="border-b border-neutral-200 dark:border-neutral-800 px-4 py-2.5 sm:py-3">
+        <h2 className="text-[1.85rem] sm:text-[2.1rem] font-semibold tracking-tight text-neutral-900 dark:text-white font-display">
+          Projects
+        </h2>
+      </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-4">
-        {projects.map((project, idx) => (
-          <ProjectCard
-            project={project}
-            idx={idx}
-            key={project.title}
-            onOpenPreview={() => {
-              setSelectedProject(project);
-            }}
-          />
-        ))}
+      {/* Collapsible Project List matching Saddine.com */}
+      <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+        {visibleProjects.map((project, idx) => {
+          const isOpen = !!openProjects[idx];
+          const projectLink = project.href || project.githubUrl;
+
+          return (
+            <div key={project.title} className="group/collapsible">
+              {/* Project Header Row Bar */}
+              <div className="flex items-center hover:bg-neutral-50/60 dark:hover:bg-neutral-900/40 transition-colors">
+                {/* Left Circle Logo Icon */}
+                <div className="mx-4 size-6 shrink-0 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex items-center justify-center text-[10px] font-bold text-neutral-800 dark:text-neutral-200">
+                  {project.title.charAt(0)}
+                </div>
+
+                {/* Main Row Content Trigger */}
+                <div className="flex-1 border-l border-dashed border-neutral-200 dark:border-neutral-800">
+                  <div
+                    onClick={() => toggleProject(idx)}
+                    className="flex w-full items-center justify-between p-4 pr-3 cursor-pointer select-none"
+                  >
+                    <div>
+                      <h3 className="text-base font-semibold text-neutral-900 dark:text-white leading-snug font-display">
+                        {project.title.split("–")[0].trim()}
+                      </h3>
+                      <div className="font-mono text-[0.72rem] tracking-widest text-neutral-400 dark:text-neutral-500 uppercase flex items-center gap-1 mt-0.5">
+                        <span>{project.year || "2025"}</span>
+                        <span>—</span>
+                        <span className="text-sm font-sans leading-none">
+                          ∞
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      {projectLink && (
+                        <a
+                          href={projectLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title="Open Project Link"
+                          className="p-1 text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-opacity duration-300 hover:opacity-80"
+                        >
+                          <IconExternalLink size={16} />
+                        </a>
+                      )}
+                      <button
+                        onClick={() => toggleProject(idx)}
+                        className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
+                      >
+                        {isOpen ? (
+                          <IconChevronUp size={18} />
+                        ) : (
+                          <IconChevronDown size={18} />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Collapsible Expanded Area */}
+              {isOpen && (
+                <div className="border-t border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 space-y-4 bg-white dark:bg-black">
+                  {/* Tablet Frame Mockup Preview */}
+                  {project.image && (
+                    <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 p-4 sm:p-8 flex items-center justify-center">
+                      <div
+                        className="absolute inset-0 bg-dot-grid [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"
+                        aria-hidden="true"
+                      />
+                      <div className="relative z-10 w-full max-w-xl shadow-2xl rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-700 bg-neutral-950 p-2">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-auto object-cover rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Prose Description */}
+                  <p className="text-[0.95rem] leading-7 text-neutral-600 dark:text-neutral-400 font-normal">
+                    {project.description}
+                  </p>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg text-xs font-medium border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 px-3.5 h-8 gap-1.5 transition-all duration-300 hover:opacity-80 active:scale-95"
+                      >
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-700 px-3.5 h-8 gap-1.5 transition-all duration-300 hover:opacity-80 active:scale-95"
+                      >
+                        <span>Open Source</span>
+                      </a>
+                    )}
+                  </div>
+
+                  {/* Monospace Tech Stack Tag Pills */}
+                  {project.techStack && (
+                    <ul className="flex flex-wrap gap-1.5 pt-2">
+                      {project.techStack.map((tech) => (
+                        <li key={tech.name}>
+                          <span className="inline-flex items-center rounded-lg border border-neutral-200 dark:border-neutral-800 bg-zinc-50 dark:bg-zinc-900 px-2 py-0.5 font-mono text-xs text-neutral-500 dark:text-neutral-400">
+                            {tech.name}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      {/* Interactive Modal Showcase (Pre-loaded for Instant Click Response) */}
-      {allProjects.map((project) => {
-        const isOpen = selectedProject?.title === project.title;
-        return (
-          <div
-            key={project.title}
-            className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-500 ${
-              isOpen
-                ? "pointer-events-auto opacity-100 visible"
-                : "pointer-events-none opacity-0 invisible"
-            }`}
+      {/* Bottom Show More Toggle Button Pill */}
+      {allProjects.length > 3 && (
+        <div className="p-4 flex items-center justify-center border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black">
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-xs"
           >
-            {/* Frosted Backdrop */}
-            <div
-              onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-neutral-950/60 backdrop-blur-md cursor-pointer"
-            />
-
-            {/* Modal Dialog */}
-            <motion.div
-              animate={{
-                scale: isOpen ? 1 : 0.9,
-                y: isOpen ? 0 : 25,
-                filter: isOpen ? "blur(0px)" : "blur(4px)",
-              }}
-              transition={{ type: "spring", stiffness: 220, damping: 22 }}
-              className="relative w-[96vw] h-[92vh] flex flex-col bg-white dark:bg-neutral-950 rounded-xl overflow-hidden shadow-2xl z-10"
-            >
-              {/* Premium Custom Showcase Header */}
-              <div className="flex items-center justify-between px-5 py-3 bg-neutral-50 dark:bg-neutral-900 select-none">
-                {/* Simplified Title Label */}
-                <div className="text-xs font-bold text-neutral-700 dark:text-neutral-300">
-                  {project.title.split("–")[0].trim()}
-                </div>
-
-                {/* Mock Browser URL Bar (No Border, Rounded-LG) */}
-                <div className="hidden sm:flex items-center gap-2 px-4.5 py-1.5 bg-neutral-100 dark:bg-neutral-850/80 rounded-lg max-w-md w-72 md:w-96 text-[11px] text-neutral-500 dark:text-neutral-400 font-mono tracking-tight justify-center shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)]">
-                  <span className="text-neutral-400 dark:text-neutral-600 font-sans text-xs">
-                    🔗
-                  </span>
-                  <span className="truncate">
-                    {project.href.replace(/^https?:\/\//, "")}
-                  </span>
-                </div>
-
-                {/* Right-aligned Navigation Controls */}
-                <div className="flex items-center gap-3">
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-bold bg-white hover:bg-neutral-50 dark:bg-neutral-950 dark:hover:bg-neutral-900 text-neutral-700 dark:text-neutral-300 px-3.5 py-1.5 rounded-lg shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                  >
-                    <span>Open Live</span>
-                    <IconExternalLink size={12} />
-                  </a>
-
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="p-1.5 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
-                    title="Close"
-                  >
-                    <IconX size={18} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Iframe Viewport Container */}
-              <div className="relative flex-1 bg-neutral-50 dark:bg-neutral-900 overflow-hidden">
-                {/* Loader in the background */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-50 dark:bg-neutral-900">
-                  <div className="w-10 h-10 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-3" />
-                  <span className="text-xs text-neutral-400 dark:text-neutral-500 font-medium animate-pulse">
-                    Loading live application...
-                  </span>
-                </div>
-
-                {/* Embedded App Frame (only mounted if open) */}
-                {isOpen && (
-                  <iframe
-                    src={project.href}
-                    className="w-full h-full border-none relative z-10"
-                    title={project.title}
-                    allow="clipboard-write; microphone; camera; midi"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                  />
-                )}
-              </div>
-            </motion.div>
-          </div>
-        );
-      })}
-    </div>
+            <span>{showAll ? "Show Less" : "Show More"}</span>
+            {showAll ? (
+              <IconChevronUp size={14} />
+            ) : (
+              <IconChevronDown size={14} />
+            )}
+          </button>
+        </div>
+      )}
+    </section>
   );
 }

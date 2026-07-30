@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
-import Navbar from "./components/navbar";
-import Container from "./components/container";
-import Scales from "./components/scales";
-import BackgroundAmbient from "./components/background-ambient";
+import SaddineHeader from "./components/saddine-header";
+import EmblemBanner from "./components/emblem-banner";
 import HeroSection from "./components/hero-section";
-import Projects from "./components/projects";
-import Skills from "./components/skills";
+import AboutPanel from "./components/about-panel";
 import Experience from "./components/experience";
-import MoreProjectsExplorer from "./components/more-projects-explorer";
+import Skills from "./components/skills";
+import Projects from "./components/projects";
+import BlogPanel from "./components/blog-panel";
 import LandingContactForm from "./components/landing-contact-form";
-import { Timeline } from "./components/timeline";
-import { DraggableCardDemo } from "./components/draggable-card";
+import FooterPanel from "./components/footer-panel";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -29,8 +27,14 @@ export default function App() {
     const nextTheme = theme === "dark" ? "light" : "dark";
     if (!("startViewTransition" in document)) {
       setTheme(nextTheme);
+      if (nextTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
       return;
     }
+
     document.startViewTransition(() => {
       if (nextTheme === "dark") {
         document.documentElement.classList.add("dark");
@@ -45,48 +49,41 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [theme]);
 
+  const Separator = () => (
+    <div className="relative flex h-8 w-full border-x border-neutral-200 dark:border-neutral-800 bg-hatched-pattern" />
+  );
+
   return (
-    <div className="relative min-h-screen bg-neutral-100 dark:bg-black text-neutral-900 dark:text-neutral-50 font-sans">
-      <BackgroundAmbient />
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="min-h-screen bg-[#fafafa] dark:bg-[#030303] text-neutral-900 dark:text-neutral-100 font-sans antialiased transition-colors duration-200">
+      <SaddineHeader theme={theme} toggleTheme={toggleTheme} />
 
-      {/* Full-Screen Sticky Hero Section (Parallax Base - No Fading) */}
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center px-4 md:px-6 z-0 overflow-hidden">
-        <main className="w-full max-w-5xl mx-auto">
+      <main className="max-w-screen overflow-x-hidden px-2 pb-12">
+        <div className="mx-auto md:max-w-3xl">
+          <EmblemBanner />
           <HeroSection />
-        </main>
-      </div>
-
-      {/* Main Portfolio Content Sliding UP Over Sticky Hero (Seamless Background Blend Parallax) */}
-      <div className="relative z-10 bg-neutral-100 dark:bg-black pt-6">
-        <main className="max-w-5xl mx-auto pb-4 overflow-x-hidden">
-          <Container className="relative pb-4">
-            <Scales />
-
-            <div id="projects" className="mt-8">
-              <Projects limit={2} />
-            </div>
-
-            <div id="experience" className="mt-12">
-              <Experience />
-            </div>
-
-            <div id="skills" className="mt-12">
-              <Skills />
-            </div>
-
-            <div id="about" className="mt-12">
-              <Timeline />
-              <DraggableCardDemo />
-            </div>
-
-            <MoreProjectsExplorer />
-            <LandingContactForm />
-          </Container>
-        </main>
-      </div>
+          <Separator />
+          <AboutPanel />
+          <Separator />
+          <Experience />
+          <Separator />
+          <Skills />
+          <Separator />
+          <Projects />
+          <Separator />
+          <BlogPanel />
+          <Separator />
+          <LandingContactForm />
+          <Separator />
+          <FooterPanel />
+        </div>
+      </main>
     </div>
   );
 }
