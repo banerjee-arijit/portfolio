@@ -10,7 +10,9 @@ import {
   MongoDbIcon,
 } from "../components/brand-svgs";
 import novacodeImg from "../assets/novacode.png";
-import strideImg from "../assets/stride.png";
+import strideImg from "../assets/Stride.png";
+import novabidImg from "../assets/novabid.png";
+import baatcheetImg from "../assets/baatcheet.jpg";
 
 export const projects = [
   {
@@ -49,7 +51,7 @@ export const projects = [
   {
     title: "BaatCheet – Online Messaging Application",
     year: "2025",
-    image: strideImg,
+    image: baatcheetImg,
     githubUrl: "https://github.com/banerjee-arijit/BaatCheet-",
     description:
       "A full-stack Java real-time messaging application engineered with Spring Boot, WebSockets, and RESTful APIs to deliver low-latency instant chat communication. Built with a responsive React.js & TypeScript frontend, layered Java backend services, and MySQL database management to handle concurrent user sessions securely.",
@@ -64,7 +66,7 @@ export const projects = [
   {
     title: "NovaBids – Online Auction Platform",
     year: "2025",
-    image: novacodeImg,
+    image: novabidImg,
     href: "https://nova-bids-auctions.vercel.app/",
     githubUrl: "https://github.com/banerjee-arijit/NovaBids_Auctions",
     description:

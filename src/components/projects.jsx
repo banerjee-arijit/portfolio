@@ -1,9 +1,5 @@
 import { useState } from "react";
-import {
-  IconExternalLink,
-  IconChevronUp,
-  IconChevronDown,
-} from "@tabler/icons-react";
+import { IconExternalLink, IconChevronUp, IconChevronDown, IconLock } from "@tabler/icons-react";
 import { projects as allProjects } from "../constants/projects";
 
 export default function Projects() {
@@ -18,6 +14,15 @@ export default function Projects() {
   };
 
   const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
+
+  const getHostname = (url) => {
+    if (!url) return "github.com";
+    try {
+      return new URL(url).hostname;
+    } catch {
+      return url.replace(/^https?:\/\//, "").split("/")[0];
+    }
+  };
 
   return (
     <section
@@ -53,15 +58,13 @@ export default function Projects() {
                     className="flex w-full items-center justify-between p-4 pr-3 cursor-pointer select-none"
                   >
                     <div>
-                      <h3 className="text-base font-semibold text-neutral-900 dark:text-white leading-snug font-display">
+                      <h3 className="text-base font-bold text-neutral-900 dark:text-white leading-snug font-display">
                         {project.title.split("–")[0].trim()}
                       </h3>
                       <div className="font-mono text-[0.72rem] tracking-widest text-neutral-400 dark:text-neutral-500 uppercase flex items-center gap-1 mt-0.5">
                         <span>{project.year || "2025"}</span>
                         <span>—</span>
-                        <span className="text-sm font-sans leading-none">
-                          ∞
-                        </span>
+                        <span className="text-sm font-sans leading-none">∞</span>
                       </div>
                     </div>
 
@@ -82,11 +85,7 @@ export default function Projects() {
                         onClick={() => toggleProject(idx)}
                         className="text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
                       >
-                        {isOpen ? (
-                          <IconChevronUp size={18} />
-                        ) : (
-                          <IconChevronDown size={18} />
-                        )}
+                        {isOpen ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}
                       </button>
                     </div>
                   </div>
@@ -96,18 +95,33 @@ export default function Projects() {
               {/* Collapsible Expanded Area */}
               {isOpen && (
                 <div className="border-t border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 space-y-4 bg-white dark:bg-black">
-                  {/* Tablet Frame Mockup Preview */}
+                  {/* Safari Browser Window Mockup Preview */}
                   {project.image && (
-                    <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/60 p-4 sm:p-8 flex items-center justify-center">
-                      <div
-                        className="absolute inset-0 bg-dot-grid [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"
-                        aria-hidden="true"
-                      />
-                      <div className="relative z-10 w-full max-w-xl shadow-2xl rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-700 bg-neutral-950 p-2">
+                    <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl">
+                      {/* Safari Top Window Header Bar */}
+                      <div className="h-9 px-3.5 bg-neutral-100/90 dark:bg-neutral-800/90 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between select-none">
+                        {/* macOS Window Controls (Red, Yellow, Green) */}
+                        <div className="flex items-center gap-1.5">
+                          <span className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
+                          <span className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
+                          <span className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29]" />
+                        </div>
+
+                        {/* Safari URL / Address Field Bar */}
+                        <div className="flex-1 max-w-xs sm:max-w-sm mx-auto px-3 py-0.5 rounded-md bg-white/90 dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-700/80 text-[11px] font-mono text-neutral-500 dark:text-neutral-400 text-center truncate flex items-center justify-center gap-1.5 shadow-2xs">
+                          <IconLock size={10} className="text-emerald-500 shrink-0" />
+                          <span className="truncate">{getHostname(project.href || project.githubUrl)}</span>
+                        </div>
+
+                        <div className="w-12 hidden sm:block" />
+                      </div>
+
+                      {/* Website Screenshot Image Viewport */}
+                      <div className="relative w-full bg-neutral-50 dark:bg-neutral-950 overflow-hidden">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-auto object-cover rounded-lg"
+                          className="w-full h-auto object-cover object-top"
                         />
                       </div>
                     </div>
@@ -169,11 +183,7 @@ export default function Projects() {
             className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300 cursor-pointer shadow-xs"
           >
             <span>{showAll ? "Show Less" : "Show More"}</span>
-            {showAll ? (
-              <IconChevronUp size={14} />
-            ) : (
-              <IconChevronDown size={14} />
-            )}
+            {showAll ? <IconChevronUp size={14} /> : <IconChevronDown size={14} />}
           </button>
         </div>
       )}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { flushSync } from "react-dom";
 import SaddineHeader from "./components/saddine-header";
 import EmblemBanner from "./components/emblem-banner";
 import HeroSection from "./components/hero-section";
@@ -25,26 +24,23 @@ export default function App() {
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
-    if (!("startViewTransition" in document)) {
+
+    const updateDOM = () => {
       setTheme(nextTheme);
       if (nextTheme === "dark") {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
-      return;
-    }
+    };
 
-    document.startViewTransition(() => {
-      if (nextTheme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      flushSync(() => {
-        setTheme(nextTheme);
+    if (typeof document !== "undefined" && "startViewTransition" in document) {
+      document.startViewTransition(() => {
+        updateDOM();
       });
-    });
+    } else {
+      updateDOM();
+    }
   };
 
   useEffect(() => {
@@ -61,14 +57,15 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-[#fafafa] dark:bg-[#030303] text-neutral-900 dark:text-neutral-100 font-sans antialiased transition-colors duration-200">
+    <div className="min-h-screen bg-[#fafafa] dark:bg-[#030303] text-neutral-900 dark:text-neutral-100 font-sans antialiased relative">
       <SaddineHeader theme={theme} toggleTheme={toggleTheme} />
 
-      <main className="max-w-screen overflow-x-hidden px-2 pb-12">
-        <div className="mx-auto md:max-w-3xl">
+      <main className="max-w-screen overflow-x-hidden px-2 pb-12 relative">
+        <div className="mx-auto md:max-w-3xl relative">
           <EmblemBanner />
-          <HeroSection />
+          <HeroSection theme={theme} />
           <Separator />
+
           <AboutPanel />
           <Separator />
           <Experience />
@@ -84,6 +81,9 @@ export default function App() {
           <FooterPanel />
         </div>
       </main>
+
+      {/* Bottom Page Scroll Fade Overlay */}
+      <div className="sticky bottom-0 z-40 h-16 w-full bg-gradient-to-t from-[#fafafa] via-[#fafafa]/80 to-transparent dark:from-[#030303] dark:via-[#030303]/80 to-transparent pointer-events-none -mt-16" />
     </div>
   );
 }

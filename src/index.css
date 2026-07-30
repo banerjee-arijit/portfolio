@@ -58,6 +58,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Fast & Buttery-Smooth View Transition Cross-Fade for Dark/Light Theme Switch */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: theme-fade-out 0.3s ease-in-out forwards;
+}
+
+::view-transition-new(root) {
+  animation: theme-fade-in 0.3s ease-in-out forwards;
+}
+
+@keyframes theme-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes theme-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 img {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

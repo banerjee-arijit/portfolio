@@ -47,10 +47,10 @@ export default function LandingContactForm() {
         </h2>
       </header>
 
-
       <div className="p-4 sm:p-6 space-y-6">
         <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-xl leading-relaxed">
-          I am actively seeking software engineering opportunities. Feel free to reach out anytime via email or socials!
+          I am actively seeking software engineering opportunities. Feel free to
+          reach out anytime via email or socials!
         </p>
 
         <div className="flex flex-wrap gap-2.5">
@@ -71,10 +71,6 @@ export default function LandingContactForm() {
             </a>
           ))}
         </div>
-
-        <footer className="pt-6 text-center text-xs text-neutral-400 dark:text-neutral-600 font-medium border-t border-neutral-200 dark:border-neutral-800">
-          © {new Date().getFullYear()} Arijit Banerjee. Built with React & Tailwind.
-        </footer>
       </div>
     </section>
   );
