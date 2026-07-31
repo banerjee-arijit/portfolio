@@ -10,9 +10,10 @@ import {
   MongoDbIcon,
 } from "../components/brand-svgs";
 import novacodeImg from "../assets/novacode.png";
-import strideImg from "../assets/Stride.png";
+import strideImg from "../assets/stride.png";
 import novabidImg from "../assets/novabid.png";
 import baatcheetImg from "../assets/baatcheet.jpg";
+
 
 export const projects = [
   {
