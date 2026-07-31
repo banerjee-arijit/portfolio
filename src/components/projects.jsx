@@ -29,14 +29,14 @@ export default function Projects() {
       id="projects"
       className="border-x border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black rounded-none"
     >
-      {/* Panel Header */}
+      {/* Section Title */}
       <header className="border-b border-neutral-200 dark:border-neutral-800 px-4 py-2.5 sm:py-3">
         <h2 className="text-[1.85rem] sm:text-[2.1rem] font-semibold tracking-tight text-neutral-900 dark:text-white font-display">
           Projects
         </h2>
       </header>
 
-      {/* Collapsible Project List matching Saddine.com */}
+      {/* Project List */}
       <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
         {visibleProjects.map((project, idx) => {
           const isOpen = !!openProjects[idx];
@@ -44,14 +44,12 @@ export default function Projects() {
 
           return (
             <div key={project.title} className="group/collapsible">
-              {/* Project Header Row Bar */}
+              {/* Collapsible Bar Header */}
               <div className="flex items-center hover:bg-neutral-50/60 dark:hover:bg-neutral-900/40 transition-colors">
-                {/* Left Circle Logo Icon */}
                 <div className="mx-4 size-6 shrink-0 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex items-center justify-center text-[10px] font-bold text-neutral-800 dark:text-neutral-200">
                   {project.title.charAt(0)}
                 </div>
 
-                {/* Main Row Content Trigger */}
                 <div className="flex-1 border-l border-dashed border-neutral-200 dark:border-neutral-800">
                   <div
                     onClick={() => toggleProject(idx)}
@@ -92,22 +90,20 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Collapsible Expanded Area */}
+              {/* Project Card Content */}
               {isOpen && (
                 <div className="border-t border-neutral-200 dark:border-neutral-800 p-4 sm:p-6 space-y-4 bg-white dark:bg-black">
-                  {/* Safari Browser Window Mockup Preview */}
+                  {/* Safari Browser Window Frame */}
                   {project.image && (
                     <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl">
-                      {/* Safari Top Window Header Bar */}
+                      {/* Window Controls & URL Bar */}
                       <div className="h-9 px-3.5 bg-neutral-100/90 dark:bg-neutral-800/90 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between select-none">
-                        {/* macOS Window Controls (Red, Yellow, Green) */}
                         <div className="flex items-center gap-1.5">
                           <span className="size-3 rounded-full bg-[#ff5f56] border border-[#e0443e]" />
                           <span className="size-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
                           <span className="size-3 rounded-full bg-[#27c93f] border border-[#1aab29]" />
                         </div>
 
-                        {/* Safari URL / Address Field Bar */}
                         <div className="flex-1 max-w-xs sm:max-w-sm mx-auto px-3 py-0.5 rounded-md bg-white/90 dark:bg-neutral-900/90 border border-neutral-200/80 dark:border-neutral-700/80 text-[11px] font-mono text-neutral-500 dark:text-neutral-400 text-center truncate flex items-center justify-center gap-1.5 shadow-2xs">
                           <IconLock size={10} className="text-emerald-500 shrink-0" />
                           <span className="truncate">{getHostname(project.href || project.githubUrl)}</span>
@@ -116,23 +112,24 @@ export default function Projects() {
                         <div className="w-12 hidden sm:block" />
                       </div>
 
-                      {/* Website Screenshot Image Viewport */}
+                      {/* Preview Image */}
                       <div className="relative w-full bg-neutral-50 dark:bg-neutral-950 overflow-hidden">
                         <img
                           src={project.image}
                           alt={project.title}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-auto object-cover object-top"
                         />
                       </div>
                     </div>
                   )}
 
-                  {/* Prose Description */}
                   <p className="text-[0.95rem] leading-7 text-neutral-600 dark:text-neutral-400 font-normal">
                     {project.description}
                   </p>
 
-                  {/* Action Buttons */}
+                  {/* External Links */}
                   <div className="flex flex-wrap gap-2 pt-1">
                     {project.href && (
                       <a
@@ -156,7 +153,7 @@ export default function Projects() {
                     )}
                   </div>
 
-                  {/* Monospace Tech Stack Tag Pills */}
+                  {/* Tech Tags */}
                   {project.techStack && (
                     <ul className="flex flex-wrap gap-1.5 pt-2">
                       {project.techStack.map((tech) => (
@@ -175,7 +172,7 @@ export default function Projects() {
         })}
       </div>
 
-      {/* Bottom Show More Toggle Button Pill */}
+      {/* Show More Button */}
       {allProjects.length > 3 && (
         <div className="p-4 flex items-center justify-center border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black">
           <button

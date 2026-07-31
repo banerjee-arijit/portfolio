@@ -8,7 +8,7 @@ export default function HeroSection({ theme }) {
   return (
     <section className="border-x border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black">
       <div className="grid gap-6 px-4 py-6 sm:px-6 sm:py-8 md:grid-cols-[176px_minmax(0,1.45fr)] md:items-stretch md:gap-8 md:px-4 md:py-0">
-        {/* Desktop Portrait Avatar with exact outer border overlay and dashed frame */}
+        {/* Desktop Portrait View */}
         <div className="relative hidden h-full md:flex md:items-start">
           <div className="relative mr-auto w-full max-w-[176px] p-2">
             <div
@@ -20,15 +20,17 @@ export default function HeroSection({ theme }) {
               alt="Portrait of Arijit Banerjee"
               width="800"
               height="1000"
+              loading="eager"
+              decoding="async"
               className="aspect-[4/5] w-full rounded-[1.6rem] object-cover transition-all duration-300"
             />
           </div>
         </div>
 
-        {/* Right Content */}
+        {/* Hero Bio Content */}
         <div className="flex min-h-full flex-col justify-center space-y-4">
           <div className="space-y-2.5">
-            {/* Animated 3-language greeting typewriter */}
+            {/* Animated Greeting */}
             <div className="h-5 overflow-hidden flex items-center">
               <HelloTypewriter />
             </div>
@@ -45,7 +47,7 @@ export default function HeroSection({ theme }) {
             </p>
           </div>
 
-          {/* Mobile Avatar View */}
+          {/* Mobile Portrait View */}
           <div className="flex justify-start md:hidden">
             <div className="relative w-full max-w-[190px] p-1.5">
               <div
@@ -57,12 +59,14 @@ export default function HeroSection({ theme }) {
                 alt="Portrait of Arijit Banerjee"
                 width="800"
                 height="1000"
+                loading="eager"
+                decoding="async"
                 className="aspect-[4/5] w-full rounded-[1.4rem] object-cover object-center ring-1 ring-neutral-300 dark:ring-neutral-700 ring-offset-[2px] ring-offset-white dark:ring-offset-black select-none transition-all duration-300"
               />
             </div>
           </div>
 
-          {/* Availability Status Badge */}
+          {/* Availability Status */}
           <div className="pb-1">
             <div className="inline-flex items-center gap-2 font-sans text-xs leading-none text-neutral-500 dark:text-neutral-400">
               <span className="relative flex size-2.5" aria-hidden="true">
