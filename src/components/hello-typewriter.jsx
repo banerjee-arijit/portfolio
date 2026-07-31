@@ -53,7 +53,7 @@ export default function HelloTypewriter() {
   }, [currentText, isDeleting, wordIndex, speed]);
 
   return (
-    <div className="h-5 flex items-center text-xs md:text-sm font-bold tracking-wider text-neutral-950 dark:text-neutral-50 uppercase mb-1">
+    <div className="h-5 flex items-center text-xs md:text-sm font-semibold tracking-wider text-neutral-950 dark:text-neutral-50 uppercase">
       <span>{currentText}</span>
       <span className="w-[2px] h-3.5 bg-neutral-950 dark:bg-neutral-50 animate-pulse ml-1 inline-block" />
     </div>

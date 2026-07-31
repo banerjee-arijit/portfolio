@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const StackIcon = lazy(() => import("tech-stack-icons"));
 
@@ -48,11 +49,19 @@ export default function Skills() {
 
       <div className="p-4 sm:p-6 space-y-6">
         {/* Outer Rounded Grid Container matching User Image */}
-        <div className="rounded-3xl  overflow-hidden shadow-2xs">
+        <div className="rounded-3xl overflow-hidden shadow-2xs">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
             {skillList.map((skill, idx) => (
-              <div
+              <motion.div
                 key={skill.name + idx}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: idx * 0.05,
+                  ease: [0.21, 0.47, 0.32, 0.98],
+                }}
                 className="flex flex-col items-center justify-center p-6 border-b border-r border-neutral-200/80 dark:border-neutral-800/80 hover:bg-white/60 dark:hover:bg-neutral-900/50 transition-colors group cursor-pointer"
               >
                 {/* White/Dark Rounded Squircle Badge */}
@@ -83,7 +92,7 @@ export default function Skills() {
                 <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200 text-center font-display">
                   {skill.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

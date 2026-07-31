@@ -12,19 +12,11 @@ export default function AboutPanel() {
 
       <div className="p-4 sm:p-6 space-y-4 text-[0.98rem] leading-7">
         <p className="text-neutral-900 dark:text-neutral-300 font-normal">
-          I'm a software engineer building production-grade digital products
-          with Java, Spring Boot, React.js, and TypeScript. I care about
-          building software that feels polished on the surface and stays
-          reliable underneath, with a strong focus on performance,
-          maintainability, and consistency.
+          I build digital products that feel effortless on the outside and run flawlessly on the inside. As a full-stack engineer working with Java, Spring Boot, React.js, and TypeScript, I care deeply about both the polish of the user interface and the resilience of the architecture beneath it.
         </p>
 
-        {/* Faded second paragraph */}
         <p className="text-neutral-900 dark:text-neutral-300 font-normal">
-          My work spans full-stack development, reusable component design
-          systems, and scalable architecture, with close attention to detail.
-          Having completed my internship at ShopCardd, I enjoy turning complex
-          ideas into experiences that feel clear, fast, and natural.
+          My experience most recently at ShopCardd has sharpened my focus on scalable backends and reusable frontend design systems. Whether I am fine-tuning performance or architecting a solution from scratch, my goal is always to turn complex ideas into clear, fast, and natural experiences.
         </p>
       </div>
     </section>

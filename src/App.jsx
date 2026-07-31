@@ -9,6 +9,7 @@ import Projects from "./components/projects";
 import BlogPanel from "./components/blog-panel";
 import LandingContactForm from "./components/landing-contact-form";
 import FooterPanel from "./components/footer-panel";
+import ScrollReveal from "./components/scroll-reveal";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -62,23 +63,55 @@ export default function App() {
 
       <main className="max-w-screen overflow-x-hidden px-2 pb-12 relative">
         <div className="mx-auto md:max-w-3xl relative">
-          <EmblemBanner />
-          <HeroSection theme={theme} />
+          <ScrollReveal yOffset={16}>
+            <EmblemBanner />
+          </ScrollReveal>
+
+          <ScrollReveal yOffset={20}>
+            <HeroSection theme={theme} />
+          </ScrollReveal>
+
           <Separator />
 
-          <AboutPanel />
+          <ScrollReveal>
+            <AboutPanel />
+          </ScrollReveal>
+
           <Separator />
-          <Experience />
+
+          <ScrollReveal>
+            <Experience />
+          </ScrollReveal>
+
           <Separator />
-          <Skills />
+
+          <ScrollReveal>
+            <Skills />
+          </ScrollReveal>
+
           <Separator />
-          <Projects />
+
+          <ScrollReveal>
+            <Projects />
+          </ScrollReveal>
+
           <Separator />
-          <BlogPanel />
+
+          <ScrollReveal>
+            <BlogPanel />
+          </ScrollReveal>
+
           <Separator />
-          <LandingContactForm />
+
+          <ScrollReveal>
+            <LandingContactForm />
+          </ScrollReveal>
+
           <Separator />
-          <FooterPanel />
+
+          <ScrollReveal>
+            <FooterPanel />
+          </ScrollReveal>
         </div>
       </main>
 
